@@ -8,9 +8,9 @@ from .forms import CommentForm
 class PostListView(ListView):
     model = Post
     template_name = "blog/index.html"
-    context_object_name = "posts"
+    context_object_name = "post_list"
     ordering = ["-created_time"]
-    paginate_by = 10
+    paginate_by = 5
 
 
 class PostDetailView(DetailView):
