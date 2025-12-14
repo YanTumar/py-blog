@@ -5,11 +5,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-#2*1rtqjx=)eqqjkdpyl5(_td$p!ps0n=tp7gv$-x!q+klo%ov'
 
-
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = "blog.User"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -76,8 +76,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
-AUTH_USER_MODEL = "blog.User"
 
 LANGUAGE_CODE = "en-us"
 
