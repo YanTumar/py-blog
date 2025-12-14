@@ -26,6 +26,9 @@ class PostDetailView(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+
         self.object = self.get_object()
         post = self.object
         form = CommentForm(request.POST)
@@ -33,7 +36,7 @@ class PostDetailView(DetailView):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
-            comment.author = request.user
+            comment.user = request.user
             comment.save()
 
             return redirect(

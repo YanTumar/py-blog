@@ -4,7 +4,6 @@ from django.contrib.auth.models import Group
 from .models import Post, Commentary, User
 
 
-# Вимога: unregister the Group model
 admin.site.unregister(Group)
 
 
@@ -15,8 +14,8 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "created_time")
-    list_filter = ("author", "created_time")
+    list_display = ("title", "owner", "created_time")
+    list_filter = ("owner", "created_time")
     search_fields = ("title", "content")
     date_hierarchy = "created_time"
     ordering = ("-created_time",)
@@ -24,8 +23,9 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Commentary)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("post", "author", "created_time")
-    list_filter = ("author", "created_time")
-    search_fields = ("text",)
+    list_display = ("post", "user", "created_time")
+    list_filter = ("user", "created_time")
+    # Змінено з 'text' на 'content'
+    search_fields = ("content",)
     date_hierarchy = "created_time"
     ordering = ("created_time",)
