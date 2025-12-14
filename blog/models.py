@@ -28,7 +28,7 @@ class Post(models.Model):
         return self.title
 
 
-class Comment(models.Model):
+class Commentary(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments"
     )
@@ -39,6 +39,9 @@ class Comment(models.Model):
     )
     text = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Commentaries"
 
     def __str__(self):
         return (
