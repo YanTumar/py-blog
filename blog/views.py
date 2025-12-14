@@ -27,7 +27,7 @@ class PostDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('login')
+            return redirect("login")
 
         self.object = self.get_object()
         post = self.object
