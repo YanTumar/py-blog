@@ -9,7 +9,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title"><a href="{% url 'blog:post-detail' pk=post.pk %}">{{ post.title }}</a></h5>
-                <p class="card-text text-muted">Author: {{ post.author.username }} | {{ post.created_time|date:"Y-m-d" }}</p>
+                <p class="card-text text-muted">Author: {{ post.owner.username }} | {{ post.created_time|date:"Y-m-d" }}</p>
             </div>
         </div>
     {% endfor %}
