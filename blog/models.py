@@ -12,7 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="posts"
@@ -28,22 +28,22 @@ class Post(models.Model):
         return self.title
 
 
-class Commentary(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments"
     )
-    user = models.ForeignKey(
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comments"
     )
-    content = models.TextField()
+    text = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "Commentaries"
+        verbose_name_plural = "Comments"
 
     def __str__(self):
         return (
-            f"Comment by {self.user.username} on {self.post.title}"
+            f"Comment by {self.author.username} on {self.post.title}"
         )
